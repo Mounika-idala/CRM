@@ -19,6 +19,7 @@ import org.testng.annotations.Parameters;
 
 import POM_Pages.CRM_LoginandHomepage;
 import genericutility.FileUtility;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import webdriverutility.WebDriverUtiity;
 
 public class BaseTest
@@ -38,8 +39,12 @@ public class BaseTest
 		String browser=System.getProperty("Browser",fl.getDataFromProperties("Browser"));
 		if(browser.equals("Chrome"))
 			driver=new ChromeDriver();
+		
 		else if(browser.equals("Edge"))
+		{
+			WebDriverManager.edgedriver().setup();
 			driver=new EdgeDriver();
+		}
 		else if(browser.equals("Firefox"))
 			driver=new FirefoxDriver();
 		else
